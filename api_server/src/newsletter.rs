@@ -1,8 +1,7 @@
-use std::{array, error::Error};
+use std::error::Error;
 
-use axum::Json;
 use json::{self, JsonValue};
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
 
 pub async fn fetch_cert_api() -> Result<(JsonValue, JsonValue, JsonValue), Box<dyn Error>> {
@@ -17,7 +16,7 @@ pub async fn fetch_cert_api() -> Result<(JsonValue, JsonValue, JsonValue), Box<d
     ))
 }
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize)]
 struct NewsletterNews {
     title: String,
     slug: String,
