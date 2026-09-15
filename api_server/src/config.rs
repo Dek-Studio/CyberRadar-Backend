@@ -3,7 +3,10 @@ pub struct Config {
 }
 impl Config {
     pub fn fetch() -> Self {
-        let port = std::env::var("PORT").unwrap_or(String::from("3000"));
+        let port = std::env::var("PORT").unwrap_or_else(|_| {
+            eprintln!("No port provided in environmental variable. Defaulting to 3000");
+            String::from("3000")
+        });
 
         Self { port }
     }
