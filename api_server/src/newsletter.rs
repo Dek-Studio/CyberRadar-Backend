@@ -58,7 +58,12 @@ pub async fn newsletter_json() -> String {
                 }
             } /* for member in members */
 
-            serde_json::to_string(&ready_news_vector).unwrap_or_default()
+            println!("Successfully fetched and processed {} advisories from CERT.PL", ready_news_vector.len());
+
+            serde_json::to_string(&ready_news_vector).unwrap_or_else(|e| {
+                eprintln!("Failed to serialize news vector to JSON string: {e}");
+                String::from("")
+            })
 
 
         },
