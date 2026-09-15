@@ -2,7 +2,7 @@ use axum::{
     routing::get,
     Router
 };
-use crate::config::Config;
+use crate::{config::Config};
 
 mod config;
 mod newsletter;
