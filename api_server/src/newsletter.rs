@@ -23,5 +23,6 @@ fn default_advisory_json() -> JsonValue {
 }
 
 pub async fn newsletter_json() -> String {
-    String::from("Newsletter goes here!")
+    let (page1, page2, page3) = fetch_cert_api().await;
+    format!("Page 1:\n{}\n\n\nPage2:\n{}\n\n\nPage3:\n{}", page1, page2, page3)
 }
