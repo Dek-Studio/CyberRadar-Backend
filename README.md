@@ -1,3 +1,5 @@
+![](repo_cover.png)
+
 # CyberRadar Backend
 
 Backend API server for **[CyberRadar](https://github.com/Dek-Studio/CyberRadar-Web)**. Written in **Rust**.
