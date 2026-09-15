@@ -17,15 +17,6 @@ pub async fn fetch_cert_api() -> Result<(JsonValue, JsonValue, JsonValue), Box<d
     ))
 }
 
-fn default_advisory_json() -> JsonValue {
-    json::object! {
-        "count": 0,
-        "next": null,
-        "previous": null,
-        "results": json::array![]
-    }
-}
-
 #[derive(Serialize, Debug)]
 struct NewsletterNews {
     title: String,
