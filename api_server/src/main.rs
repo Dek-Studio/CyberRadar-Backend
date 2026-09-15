@@ -14,7 +14,7 @@ async fn main() {
     println!("STARTING API SERVER WITH THE FOLLOWING CONFIG:\nPORT: {}", config.port);
 
     let app = Router::new()
-        .route("/newsletter.json", get(|| newsletter::newsletter_json()));
+        .route("/advisories.json", get(|| newsletter::newsletter_json()));
 
     let listener = tokio::net::TcpListener::bind( /* Bind a listener on specified port for all addresses */
         format!("0.0.0.0:{}", config.port))
