@@ -22,6 +22,7 @@ struct NewsletterNews {
     slug: String,
     lead: String,
     description: String,
+    publication_date: String,
 }
 
 fn combine_newsletter_pages(page1: JsonValue, page2: JsonValue, page3: JsonValue, ) -> JsonValue {
@@ -53,8 +54,9 @@ pub async fn newsletter_json() -> String {
                     let slug = member["slug"].to_string();
                     let lead = member["lead"].to_string();
                     let description = member["description"].to_string();
+                    let publication_date = member["publication_date"].to_string();
 
-                    ready_news_vector.push(NewsletterNews { title, slug, lead, description });
+                    ready_news_vector.push(NewsletterNews { title, slug, lead, description, publication_date });
                 }
             } /* for member in members */
 
