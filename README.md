@@ -35,7 +35,10 @@ The point of this backend is calling the **[CERT.PL](https://cert.pl)** advisori
 ## Configuration
 
 The server is configured using environment variables:
-* `PORT` - The port the server will listen on (default: `3000`).
+* `PORT` - The port the server will listen on (default: `3000`) - stored in code as `u16`.
+* `ADVISORY_PAGES` - How many pages of advisories should be fetched from CERT.PL (default: `3`) - stored in code as `u16`.
+* `ADVISORIES_UPDATE_INTERVAL` - The time between updates of advisory list (default: `30`) - stored in code as `u64`.
+* `LOG_RESPONSES` - If every response made by this server should be logged. Logs only what endpoint was fetched. *Note: Failed responses will be logged anyway.* (default: `true`) - stored in code as `bool`.
 
 ## Setting up the server
 
@@ -43,7 +46,7 @@ This server is designed to run via **systemctl**. You can create the service fil
 
 1. Download the latest binary from [releases](https://github.com/Dek-Studio/CyberRadar-Web/releases) or compile it on your own. 
 2. Download our pre-made service file: [cyberradar.service](/cyberradar.service).
-3. Open the `cyberradar.service` file with any text editor and fill in the blanks (`PORT` and `EXECUTABLE PATH`) as indicated by the comments.
+3. Open the `cyberradar.service` file with any text editor and fill in the blanks (`EXECUTABLE PATH` and technically optional but recommended all the env variables) as indicated by the comments.
 4. Place the edited service file in `/etc/systemd/system/` so the path becomes: `/etc/systemd/system/cyberradar.service`.
 5. Enable and start the service by executing these commands:
     ```bash

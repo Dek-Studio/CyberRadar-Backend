@@ -1,14 +1,14 @@
 pub struct Config {
-    pub port: String,
+    pub port: u16,
     pub advisory_pages: u16,
     pub advisories_update_interval: u64,
     pub log_responses: bool,
 }
 impl Config {
     pub fn fetch() -> Self {
-        let port = std::env::var("PORT").unwrap_or_else(|_| {
+        let port: u16 = std::env::var("PORT").unwrap_or_default().parse().unwrap_or_else(|_| {
             log_err!("No port provided in environmental variable. Defaulting to 3000.");
-            String::from("3000")
+            3000
         });
 
         let advisory_pages: u16 = std::env::var("ADVISORY_PAGES").unwrap_or_default().parse().unwrap_or_else(|_| {
