@@ -5,13 +5,15 @@ After=network.target
 [Service]
 Type=simple
 User=root
-# Put the absolute path to the binary you downloaded below!
-ExecStart=#PATH_GOES_HERE
+ExecStart=#PUT ABSOLUTE PATH TO BINARY HERE
 Restart=always
 RestartSec=5s
 
-# Put port you want to host the backend on below!
-Environment=PORT=#PORT_GOES_HERE
+# Fill configuration below!
+Environment=PORT=#PUT PORT HERE (String)
+Environment=ADVISORY_PAGES=#PUT AMOUNT OF PAGES_TO_BE_FETCHED_HERE_(u16)
+Environment=ADVISORIES_UPDATE_INTERVAL=#PUT TIME BETWEEN ADVISORY LIST UPDATES HERE (u64)
+Environment=LOG_RESPONSES=#PUT IF RESPONSES SHOULD BE LOGGED (bool)
 
 [Install]
 WantedBy=multi-user.target
