@@ -44,7 +44,7 @@ The server is configured using environment variables:
 
 This server is designed to run via **systemctl**. You can create the service file manually or use our pre-made template by following these steps:
 
-1. Download the latest binary from [releases](https://github.com/Dek-Studio/CyberRadar-Web/releases) or compile it on your own. 
+1. Download the latest binary from [latest release](https://github.com/Dek-Studio/CyberRadar-Backend/releases/latest) or compile it on your own. 
 2. Download our pre-made service file: [cyberradar.service](/cyberradar.service).
 3. Open the `cyberradar.service` file with any text editor and fill in the blanks (`EXECUTABLE PATH` and technically optional but recommended all the env variables) as indicated by the comments.
 4. Place the edited service file in `/etc/systemd/system/` so the path becomes: `/etc/systemd/system/cyberradar.service`.
