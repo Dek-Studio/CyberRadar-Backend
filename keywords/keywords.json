@@ -1,0 +1,137 @@
+{
+  "categories": {
+    "presja_czasu_naganianie": {
+      "description": "Zwroty wywołujące pośpiech, naganianie i strach przed konsekwencjami",
+      "items": [
+        { "keyword": "pilne", "weight": 3 },
+        { "keyword": "pilna", "weight": 3 },
+        { "keyword": "natychmiast", "weight": 3 },
+        { "keyword": "natychmiastowo", "weight": 3 },
+        { "keyword": "ostatnie ostrzeżenie", "weight": 3 },
+        { "keyword": "ostatnie przypomnienie", "weight": 2 },
+        { "keyword": "ostatnia szansa", "weight": 2 },
+        { "keyword": "w ciągu 24h", "weight": 3 },
+        { "keyword": "w ciągu 12h", "weight": 3 },
+        { "keyword": "w ciągu 2 godzin", "weight": 3 },
+        { "keyword": "masz tylko", "weight": 2 },
+        { "keyword": "czas ucieka", "weight": 2 },
+        { "keyword": "nie zwlekaj", "weight": 2 },
+        { "keyword": "anulowanie konta", "weight": 3 },
+        { "keyword": "zignorowanie skutkuje", "weight": 3 },
+        { "keyword": "zostanie zablokowane dzisiaj", "weight": 3 },
+        { "keyword": "do końca dnia", "weight": 2 },
+        { "keyword": "ostateczne wezwanie", "weight": 3 },
+        { "keyword": "działać natychmiast", "weight": 3 }
+      ]
+    },
+    "bankowosc_finanse": {
+      "description": "Wyłudzenia danych logowania, kart i autoryzacji transakcji",
+      "items": [
+        { "keyword": "zablokowane konto", "weight": 3 },
+        { "keyword": "blokada konta", "weight": 3 },
+        { "keyword": "nieautoryzowana transakcja", "weight": 3 },
+        { "keyword": "potwierdź tożsamość", "weight": 3 },
+        { "keyword": "zaloguj się", "weight": 2 },
+        { "keyword": "karta została zablokowana", "weight": 3 },
+        { "keyword": "nowy przelew", "weight": 1 },
+        { "keyword": "prowizja", "weight": 1 },
+        { "keyword": "blik", "weight": 2 },
+        { "keyword": "kodu blik", "weight": 3 },
+        { "keyword": "przelew weryfikacyjny", "weight": 3 },
+        { "keyword": "wyłudzenie", "weight": 2 },
+        { "keyword": "aplikacja bankowa", "weight": 1 },
+        { "keyword": "konto zawieszone", "weight": 3 },
+        { "keyword": "nieznana próba logowania", "weight": 3 }
+      ]
+    },
+    "podejrzane_linki_skroty": {
+      "description": "Skracacze linków używane do ukrywania prawdziwego adresu strony",
+      "items": [
+        { "keyword": "bit.ly", "weight": 3 },
+        { "keyword": "tinyurl", "weight": 3 },
+        { "keyword": "cutt.ly", "weight": 3 },
+        { "keyword": "t.co", "weight": 3 },
+        { "keyword": "is.gd", "weight": 3 },
+        { "keyword": "rb.gy", "weight": 3 },
+        { "keyword": "page.link", "weight": 3 },
+        { "keyword": "ow.ly", "weight": 3 },
+        { "keyword": "goo.gl", "weight": 3 }
+      ]
+    },
+    "doplata_paczka": {
+      "description": "Oszustwa na drobne dopłaty do przesyłek i problem z adresem",
+      "items": [
+        { "keyword": "dopłata", "weight": 3 },
+        { "keyword": "doplata", "weight": 3 },
+        { "keyword": "paczka", "weight": 1 },
+        { "keyword": "kurier", "weight": 1 },
+        { "keyword": "paczkomat", "weight": 1 },
+        { "keyword": "niedowaga", "weight": 2 },
+        { "keyword": "wstrzymana", "weight": 2 },
+        { "keyword": "inpost", "weight": 1 },
+        { "keyword": "poczta", "weight": 1 },
+        { "keyword": "dpd", "weight": 1 },
+        { "keyword": "dhl", "weight": 1 },
+        { "keyword": "gls", "weight": 1 },
+        { "keyword": "adres dostawy", "weight": 2 },
+        { "keyword": "brak adresu", "weight": 2 },
+        { "keyword": "zaktualizuj adres", "weight": 3 },
+        { "keyword": "błędny adres", "weight": 2 },
+        { "keyword": "magazyn", "weight": 1 }
+      ]
+    },
+    "podstepne_wiado_znajomi": {
+      "description": "Podszywanie się pod dzieci, rodziców lub znajomych w potrzebie",
+      "items": [
+        { "keyword": "cześć mamo", "weight": 3 },
+        { "keyword": "czesc mamo", "weight": 3 },
+        { "keyword": "cześć tato", "weight": 3 },
+        { "keyword": "czesc tato", "weight": 3 },
+        { "keyword": "zepsuł mi się telefon", "weight": 3 },
+        { "keyword": "zepsul mi sie telefon", "weight": 3 },
+        { "keyword": "mój nowy numer", "weight": 2 },
+        { "keyword": "moj nowy numer", "weight": 2 },
+        { "keyword": "napisz do mnie na whatsapp", "weight": 3 },
+        { "keyword": "potrzebuję szybkiej pożyczki", "weight": 3 },
+        { "keyword": "zgubiłem portfel", "weight": 2 },
+        { "keyword": "zapłać za mnie", "weight": 2 },
+        { "keyword": "pilny przelew", "weight": 3 }
+      ]
+    },
+    "energetyka_rachunki": {
+      "description": "Straszenie odłączeniem mediów lub wezwaniami do zapłaty",
+      "items": [
+        { "keyword": "odłączenie prądu", "weight": 3 },
+        { "keyword": "brak wpłaty", "weight": 2 },
+        { "keyword": "rachunek za prąd", "weight": 1 },
+        { "keyword": "tauron", "weight": 1 },
+        { "keyword": "pge", "weight": 1 },
+        { "keyword": "energa", "weight": 1 },
+        { "keyword": "eon", "weight": 1 },
+        { "keyword": "niezapłacony rachunek", "weight": 2 },
+        { "keyword": "wezwanie do zapłaty", "weight": 3 },
+        { "keyword": "windykacja", "weight": 3 },
+        { "keyword": "komornik", "weight": 3 },
+        { "keyword": "sąd", "weight": 2 },
+        { "keyword": "policja", "weight": 2 },
+        { "keyword": "kara finansowa", "weight": 3 }
+      ]
+    },
+    "naganianie_okazje_wygrane": {
+      "description": "Naganianie na fałszywe wygrane, promocje i szybki zarobek",
+      "items": [
+        { "keyword": "wygrałeś", "weight": 3 },
+        { "keyword": "wygrana", "weight": 2 },
+        { "keyword": "odebierz nagrodę", "weight": 3 },
+        { "keyword": "nagroda czeka", "weight": 2 },
+        { "keyword": "darmowy bon", "weight": 2 },
+        { "keyword": "karta podarunkowa", "weight": 2 },
+        { "keyword": "inwestycja", "weight": 1 },
+        { "keyword": "gwarantowany zysk", "weight": 3 },
+        { "keyword": "krypto", "weight": 1 },
+        { "keyword": "okazja", "weight": 1 },
+        { "keyword": "ekstra premii", "weight": 2 }
+      ]
+    }
+  }
+}
