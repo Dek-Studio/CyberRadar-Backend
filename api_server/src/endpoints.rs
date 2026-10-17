@@ -2,8 +2,7 @@ use std::sync::Arc;
 use tokio::sync::RwLock;
 
 use crate::{
-    advisories::Advisory,
-    config::Config
+    advisories::Advisory, config::Config, msg_checker::{self, MsgCheckerState}
 };
 
 // ============================================
@@ -13,10 +12,7 @@ pub async fn advisories(advisories: Arc<RwLock<Vec<Advisory>>>, config: Arc<Conf
 
     match serde_json::to_string(&*guard) {
         Ok(response) => {
-            if config.log_responses {
-                log_response!("advisories.json")
-            }
-
+            if config.log_responses { log_response!("advisories.json") }
             response
         },
         Err(e) => {
@@ -24,4 +20,16 @@ pub async fn advisories(advisories: Arc<RwLock<Vec<Advisory>>>, config: Arc<Conf
             String::new()
         }
     }
+}
+
+pub async fn check_msg(msg_checker_state: Arc<MsgCheckerState>, config: Arc<Config>, body: String) -> String {
+
+    let (score, categories) = msg_checker::check_msg(&body, msg_checker_state);
+
+    if config.log_responses { log_response!("check_msg") }
+
+    serde_json::json!({
+        "score": score,
+        "categories": categories,
+    }).to_string()
 }

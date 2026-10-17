@@ -4,8 +4,7 @@ use tokio::sync::RwLock;
 use tokio::task;
 
 use axum::{
-    routing::get,
-    Router
+    Router, routing::{get, post}
 };
 use crate::config::Config;
 
@@ -16,6 +15,7 @@ mod macros;
 
 mod config;
 mod advisories;
+mod msg_checker;
 mod endpoints;
 
 // ============================================
@@ -26,6 +26,7 @@ async fn main() {
     let config = Arc::new(
         Config::fetch()
     );
+
     // ARC vector of advisories
     let advisories: Arc<RwLock<Vec<advisories::Advisory>>> = Arc::new(
         RwLock::new(
@@ -33,8 +34,19 @@ async fn main() {
         )
     );
 
-    println!("\n\n === STARTING API SERVER WITH THE FOLLOWING CONFIG: ===\n- PORT: {}\n- ADVISORY PAGES: {}\n- ADVISORIES UPDATE INTERVAL: {}\n- LOG RESPONSES: {}\n\n",
-        config.port, config.advisory_pages, config.advisories_update_interval, config.log_responses
+    let msg_checker_state = Arc::new(
+        msg_checker::MsgCheckerState::create( &config ).unwrap_or_else(|e| panic!("\x1b[41mFailed to create message checker state with error\n{e}\x1b[0m"))
+    );
+
+    println!("\n
+    === STARTING API SERVER WITH THE FOLLOWING CONFIG: ===
+    - PORT: {}
+    - ADVISORY PAGES: {}
+    - ADVISORIES UPDATE INTERVAL: {}
+    - LOG RESPONSES: {}
+    - MSG CHECKER KEYWORDS DICTIONARY PATH: {:?}
+    \n",
+        config.port, config.advisory_pages, config.advisories_update_interval, config.log_responses, config.msg_checker_keywords_path
     );
 
     // Spawn background task for updating advisories list
@@ -51,6 +63,12 @@ async fn main() {
                 let config_clone = Arc::clone(&config);
                 move || endpoints::advisories(Arc::clone(&advisories), config_clone )
             })
+        )
+        .route("/check_msg", post({
+                let msg_checker_state_clone = Arc::clone(&msg_checker_state);
+                let config_clone = Arc::clone(&config);
+                move |body: String| endpoints::check_msg(msg_checker_state_clone, config_clone, body)
+            })
         );
 
 
@@ -59,7 +77,7 @@ async fn main() {
         format!("0.0.0.0:{}", config.port))
         .await
         .unwrap_or_else(|e| 
-            panic!("Failed to bind port {} with error:\n{}", config.port, e)
+            panic!("\x1b[41mFailed to bind port {} with error:\n{}\x1b[0m", config.port, e)
         );
 
 

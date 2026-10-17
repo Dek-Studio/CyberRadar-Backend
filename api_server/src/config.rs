@@ -1,8 +1,11 @@
+use std::path::PathBuf;
+
 pub struct Config {
     pub port: u16,
     pub advisory_pages: u16,
     pub advisories_update_interval: u64,
     pub log_responses: bool,
+    pub msg_checker_keywords_path: Option<PathBuf>,
 }
 impl Config {
     pub fn fetch() -> Self {
@@ -30,6 +33,14 @@ impl Config {
             _ => true,
         };
 
-        Self { port, advisory_pages, advisories_update_interval, log_responses }
+        let msg_checker_keywords_path: Option<PathBuf> = match std::env::var("MSG_CHECKER_KEYWORDS_PATH") {
+            Ok(path) => Some(PathBuf::from(path)),
+            Err(_) => {
+                log_err!("No path to message checker keywords provided in enviromental variable. Defaulting to basic list of keywords embeded in binary.");
+                None
+            },
+        };
+
+        Self { port, advisory_pages, advisories_update_interval, log_responses, msg_checker_keywords_path }
     }
 }
