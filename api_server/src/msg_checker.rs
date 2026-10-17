@@ -44,7 +44,7 @@ pub fn check_msg(msg: &str, state: Arc<MsgCheckerState>) -> (u32, Vec<String>) {
     for keyword in &state.keywords {
         if msg.contains( &keyword.value.as_str() ) {
             total += &keyword.weight;
-            found_categories.push(&keyword.category);
+            if !found_categories.contains(&keyword.category.as_str()) { found_categories.push(&keyword.category) }
         }
     }
 

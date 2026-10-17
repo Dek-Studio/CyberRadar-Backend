@@ -31,6 +31,17 @@ The point of this backend is calling the **[CERT.PL](https://cert.pl)** advisori
         },
     ]
     ```
+* `/check_msg` - Analyzes a provided message string for indicators of phising, financial fraud, and social engineering manipulation, returning risk score and collection of found threat categories.
+  * **Content type:** `text/plain`
+  * **Request body:** Expects raw message string.
+
+  **Example response:**
+  ```json
+  {
+      "categories": ["podstepne_wiado_znajomi"],
+      "score":11
+  }
+  ```
 
 ## Configuration
 
