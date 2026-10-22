@@ -1,8 +1,8 @@
-use std::sync::Arc;
+use std::{collections::HashSet, sync::Arc};
 use tokio::sync::RwLock;
 
 use crate::{
-    advisories::Advisory, config::Config, msg_checker::{self, MsgCheckerState}
+    advisories::Advisory, config::Config, msg_checker::{self, MsgCheckerState}, url_checker
 };
 
 // ============================================
@@ -31,5 +31,14 @@ pub async fn check_msg(msg_checker_state: Arc<MsgCheckerState>, config: Arc<Conf
     serde_json::json!({
         "score": score,
         "categories": categories,
+    }).to_string()
+}
+
+pub async fn check_url(dangerous_domains: Arc<RwLock<HashSet<String>>>, config: Arc<Config>, body: String) -> String {
+    
+    if config.log_responses { log_response!("check_url") }
+
+    serde_json::json!({
+        "status": &url_checker::check_url(&body, dangerous_domains).await
     }).to_string()
 }

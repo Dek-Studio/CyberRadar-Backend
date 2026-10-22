@@ -61,11 +61,11 @@ pub async fn updater(advisories: Arc<RwLock<Vec<Advisory>>>, config: Arc<Config>
                     *advisories_writer = new_advisories;
                     drop(advisories_writer);
 
-                    log_ok!("Successfully called CERT.PL API and updated list of advisories!")
+                    log_ok!("Successfully called CERT.PL ADVISORIES API and updated list of advisories!")
 
                 },
                 Err(e) => {
-                    log_err!("Failed to call CERT.PL API with error: {e}.\nAdvisory list not updated.")
+                    log_err!("Failed to call CERT.PL ADVISORIES API with error: {e}.\nAdvisory list not updated.")
                 }
             }
         }

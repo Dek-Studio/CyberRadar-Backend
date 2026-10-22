@@ -1,4 +1,4 @@
-use std::sync::Arc;
+use std::{collections::HashSet, sync::Arc};
 use tokio::sync::RwLock;
 
 use tokio::task;
@@ -35,6 +35,13 @@ async fn main() {
         )
     );
 
+    // ARC hashset of dangerous domains
+    let dangerous_domains: Arc<RwLock<HashSet<String>>> = Arc::new(
+        RwLock::new(
+            HashSet::new()
+        )
+    );
+
     let msg_checker_state = Arc::new(
         msg_checker::MsgCheckerState::create( &config ).unwrap_or_else(|e| panic!("\x1b[41mFailed to create message checker state with error\n{e}\x1b[0m"))
     );
@@ -58,6 +65,14 @@ async fn main() {
         )
     );
 
+    // Spawn background task for updating domain list
+    task::spawn(
+        url_checker::updater(
+            Arc::clone(&dangerous_domains),
+            Arc::clone(&config),
+        )
+    );
+
 
     let app = Router::new()
         .route("/advisories.json", get({
@@ -69,6 +84,12 @@ async fn main() {
                 let msg_checker_state_clone = Arc::clone(&msg_checker_state);
                 let config_clone = Arc::clone(&config);
                 move |body: String| endpoints::check_msg(msg_checker_state_clone, config_clone, body)
+            })
+        )
+        .route("/check_url", post({
+                let dangerous_domains_clone = Arc::clone(&dangerous_domains);
+                let config_clone = Arc::clone(&config);
+                move |body: String| endpoints::check_url(dangerous_domains_clone, config_clone, body)
             })
         );
 
