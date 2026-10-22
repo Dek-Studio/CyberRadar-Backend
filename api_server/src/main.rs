@@ -15,6 +15,7 @@ mod macros;
 
 mod config;
 mod advisories;
+mod url_checker;
 mod msg_checker;
 mod endpoints;
 
@@ -46,7 +47,7 @@ async fn main() {
     - LOG RESPONSES: {}
     - MSG CHECKER KEYWORDS DICTIONARY PATH: {:?}
     \n",
-        config.port, config.advisory_pages, config.advisories_update_interval, config.log_responses, config.msg_checker_keywords_path
+        config.port, config.advisory_pages, config.data_update_interval, config.log_responses, config.msg_checker_keywords_path
     );
 
     // Spawn background task for updating advisories list

@@ -70,7 +70,7 @@ pub async fn updater(advisories: Arc<RwLock<Vec<Advisory>>>, config: Arc<Config>
             }
         }
 
-        sleep(Duration::from_secs(config.advisories_update_interval)).await;
+        sleep(Duration::from_secs(config.data_update_interval)).await;
     }
 }
 

@@ -3,7 +3,7 @@ use std::path::PathBuf;
 pub struct Config {
     pub port: u16,
     pub advisory_pages: u16,
-    pub advisories_update_interval: u64,
+    pub data_update_interval: u64,
     pub log_responses: bool,
     pub msg_checker_keywords_path: Option<PathBuf>,
 }
@@ -19,7 +19,7 @@ impl Config {
             3
         });
 
-        let advisories_update_interval: u64 = std::env::var("ADVISORIES_UPDATE_INTERVAL").unwrap_or_default().parse().unwrap_or_else(|_| {
+        let data_update_interval: u64 = std::env::var("DATA_UPDATE_INTERVAL").unwrap_or_default().parse().unwrap_or_else(|_| {
             log_err!("No advisory update interval provided in enviromental variable. Defaulting to 30.");
             30
         });
@@ -41,6 +41,6 @@ impl Config {
             },
         };
 
-        Self { port, advisory_pages, advisories_update_interval, log_responses, msg_checker_keywords_path }
+        Self { port, advisory_pages, data_update_interval, log_responses, msg_checker_keywords_path }
     }
 }
