@@ -42,6 +42,16 @@ The point of this backend is calling the **[CERT.PL](https://cert.pl)** advisori
       "score":11
   }
   ```
+* `/check_url` - Checks provided URL string against list of dangerous domains provided by CERT.PL and returs
+  * **Content type:** `text/plain`
+  * **Request body:** Expects raw URL string.
+
+  **Example response:**
+  ```json
+  {
+      "status": "dangerous"
+  }
+  ```
 
 ## Configuration
 
