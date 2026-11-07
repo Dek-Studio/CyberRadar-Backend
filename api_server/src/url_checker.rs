@@ -66,6 +66,10 @@ pub enum UrlState {
     Invalid,
 }
 pub async fn check_url(url: &str, domains: Arc<RwLock<HashSet<String>>>) -> UrlState {
+
+    let url = if !url.contains("//") { &format!("https://{url}") }
+        else { url }; 
+
     let domain_list = domains.read().await;
 
     let parsed_url = match Url::parse(url) {
